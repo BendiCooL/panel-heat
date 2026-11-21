@@ -1,3 +1,10 @@
+// Panel Heat — a GTA-style cover art maker, entered in make.fun's gta6-cover-art-01.
+// The app in app/ turns a person's own photos into multi-panel poster covers
+// (layouts, a sunset/neon colour grade, bold caption lettering) and exports
+// them as PNGs at 1080 x 1080, 1080 x 1350 and 1920 x 1080. This program
+// hands the entry in: it copies app/ and screenshots/ to the output folder
+// and writes the dossier the judge reads.
+//
 // A working gta6-cover-art-01 entry (Node 22, standard library only): the app is this directory's app/ folder, plain
 // static files a desktop browser loads offline (app/index.html and its ES modules, no library and no network
 // request), and the program hands it in. It copies app/ and screenshots/ from beside this file to /output and writes

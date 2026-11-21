@@ -1,23 +1,84 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
-<link rel="stylesheet" href="./style.css">
+<title>Panel Heat — GTA-style cover art from your photos</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
-    <p id="status" role="status"></p>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">PANEL&nbsp;HEAT</span>
+    <span class="brand-sub">cover art studio</span>
+  </div>
+  <p class="topbar-note">Turn your own photos into bold multi-panel cover art — sunset grade, poster lettering, exported as a PNG. Everything happens on this device; photos are never uploaded.</p>
+</header>
+
+<main class="workspace">
+  <section class="stage-wrap">
+    <canvas id="preview" width="940" height="529"></canvas>
+    <p id="status-line" class="status-line">Add a photo to begin — or tap a built-in sample.</p>
   </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+
+  <aside class="controls">
+    <section class="control-group">
+      <h2>1 · Photos</h2>
+      <button id="add-photos" type="button" class="primary-btn">Add your photos</button>
+      <input id="file-input" type="file" accept="image/*" multiple hidden>
+      <div class="sample-row">
+        <span class="sample-label">Samples:</span>
+        <button type="button" class="sample-btn" data-sample="coupe">Sunset Coupe</button>
+        <button type="button" class="sample-btn" data-sample="marina">Neon Marina</button>
+        <button type="button" class="sample-btn" data-sample="boulevard">Boulevard</button>
+        <button type="button" class="sample-btn" data-sample="pier">Pier</button>
+      </div>
+      <div id="photo-strip" class="photo-strip"></div>
+      <p class="hint">Click a photo to place it in the selected panel. Double-click to fill every panel with it. Drag on the cover to reposition, scroll to zoom.</p>
+    </section>
+
+    <section class="control-group">
+      <h2>2 · Layout</h2>
+      <div id="layout-row" class="chip-row"></div>
+    </section>
+
+    <section class="control-group">
+      <h2>3 · Colour grade</h2>
+      <div id="grade-row" class="chip-row"></div>
+    </section>
+
+    <section class="control-group">
+      <h2>4 · Caption</h2>
+      <label class="field-label" for="title-input">Title</label>
+      <input id="title-input" type="text" value="Neon Harbor" maxlength="26" autocomplete="off">
+      <label class="field-label" for="tagline-input">Tagline</label>
+      <input id="tagline-input" type="text" value="Every saint has a past" maxlength="48" autocomplete="off">
+    </section>
+
+    <section class="control-group">
+      <h2>5 · Panel framing</h2>
+      <p id="panel-label" class="panel-label">Panel 1 of 5</p>
+      <label class="field-label" for="zoom-range">Zoom</label>
+      <input id="zoom-range" type="range" min="1" max="4" step="0.01" value="1">
+      <div class="btn-row">
+        <button id="spread-btn" type="button">One photo, all panels</button>
+        <button id="clear-panel-btn" type="button">Clear panel</button>
+      </div>
+    </section>
+
+    <section class="control-group">
+      <h2>6 · Export</h2>
+      <div id="size-row" class="chip-row"></div>
+      <button id="export-btn" type="button" class="primary-btn export-btn">Export cover as PNG</button>
+    </section>
+  </aside>
 </main>
-<script type="module" src="./src/main.js"></script>
+
+<footer class="footer-note">
+  <p>Panel Heat is an original fan-made tool. It is not affiliated with Rockstar Games or the Grand Theft Auto series, and uses no artwork, logos or fonts from any game. The display font is Anton, licensed under the SIL Open Font License.</p>
+</footer>
+
+<canvas id="stage" width="1280" height="720"></canvas>
+<script type="module" src="src/main.js"></script>
 </body>
 </html>
